@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import RedirectView
 
-from task3.views import index, store, cart
+from task4.views import platform, games, cart
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
-    path('store/', store),
-    path('cart/', cart),
-
+    path('', RedirectView.as_view(url='/platform/', permanent=False)),
+    path('platform/', platform, name='platform'),
+    path('platform/games/', games, name='games'),
+    path('platform/cart/', cart, name='cart'),
 ]
